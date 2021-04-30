@@ -1,5 +1,5 @@
 <div class="card" *ngIf="product">
-  <form #form="ngForm" class="">
+  <form #form="ngForm" (submit)="submitForm()">
     <div class="row my-3 mx-3">
       <div class="col-md-6">
         <input type="hidden" name="id" [value]="product.id" />
@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        <button [disabled]="!form.dirty" class="btn btn-warning">
+        <button [disabled]="!form.dirty" type="submit" class="btn btn-warning">
           Güncelle
         </button>
         <button
@@ -113,14 +113,14 @@
             <p class="card-text">
               <input
                 type="file"
-                name="imgPath"
-                [(ngModel)]="imgPath"
+                name="product.image.path"
+                *ngIf="product.image"
+                [(ngModel)]="product.image.path"
                 #file
                 placeholder="resim seç"
                 (change)="UploadFile(file.files)"
               />
             </p>
-            <p *ngIf="product.image">image path : {{imgPath}}</p>
             <p *ngIf="product.image">image path : {{product.image.path}}</p>
           </div>
         </div>

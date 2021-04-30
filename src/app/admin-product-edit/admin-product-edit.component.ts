@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { Location } from '@angular/common';
+import { UploadService } from '../_services/upload.service';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -12,11 +13,12 @@ import { Location } from '@angular/common';
 export class AdminProductEditComponent implements OnInit {
   product?: Product;
   files: any;
-  imgPath?:string;
+  imgPath?: string;
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private location:Location
+    private location: Location,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
@@ -36,20 +38,29 @@ export class AdminProductEditComponent implements OnInit {
     );
   }
 
-  UploadFile(files: any)
-  {
-    if(files.length === 0)
-    {
+  UploadFile(files: any) {
+    if (files.length === 0) {
       return;
     }
     let fileToUpload = <File>files[0];
-    this.imgPath = fileToUpload.name;
+    if( this.product && this.product.image)
+    {
+      this.product.image.path = fileToUpload.name;
+    }
+
+
+
+
     //TODO: upload servisini çağır.
   }
 
-  cancelButton()
-  {
+  cancelButton() {
     this.location.back();
   }
 
+  submitForm() {
+
+
+
+  }
 }
