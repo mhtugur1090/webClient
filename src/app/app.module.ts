@@ -26,7 +26,7 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [							
+  declarations: [
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -49,7 +49,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: [], // token gönderilecek adres
+        allowedDomains: ["http://localhost:5000"], // token gönderilecek adres
         disallowedRoutes: ["localhost:5000/auth"],//token gönderilmeyecek adres
       },
     }),

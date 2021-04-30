@@ -1,7 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit,EventEmitter, Output } from '@angular/core';
 import { Product } from '../_models/product';
-import { UploadService } from '../_services/upload.service';
+
 
 @Component({
   selector: 'app-admin-p-image-edit',

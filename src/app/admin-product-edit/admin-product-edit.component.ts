@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { Location } from '@angular/common';
-import { UploadService } from '../_services/upload.service';
+import { Router }  from '@angular/router';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -21,7 +21,8 @@ export class AdminProductEditComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router:Router
   ) {}
 
   ngOnInit() {
@@ -47,6 +48,16 @@ export class AdminProductEditComponent implements OnInit {
 
   submitForm() {
 
+    if(this.product)
+    this.productService.putProduct(this.product).subscribe(result=>
+      {
+        console.log("Güncelleme basarılı");
+        //this.router.navigate(['dashboard']);
+        this.location.back();
+      },err=>
+      {
+        console.log(err);
+      });
 
 
   }
