@@ -1,3 +1,29 @@
-<p>
-  admin-dashboard works!
-</p>
+<div class="container">
+
+
+<table class="table table-striped custab">
+  <thead>
+  <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b>Yeni Ürün Ekle</a>
+      <tr>
+          <th>ID</th>
+          <th>Ürün İsmi</th>
+          <th>Kategori</th>
+          <th>Stok Durumu</th>
+          <th class="text-center">İşlem</th>
+      </tr>
+  </thead>
+          <tr *ngFor="let product of products">
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.category}}</td>
+              <td *ngIf="product.active"><h5 style="color: seagreen;">stokta</h5></td>
+              <td *ngIf="!product.active"><h5 style="color: red;">stokta değil</h5></td>
+              <td class="text-center">
+                <a class='btn btn-info btn-xs mr-2' [routerLink]="['/adminedit/',product.id]" href="#"><span class="glyphicon glyphicon-edit"></span>Düzenle</a>
+                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Sil</a>
+              </td>
+          </tr>
+
+  </table>
+
+</div>

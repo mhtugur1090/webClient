@@ -11,16 +11,32 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.service';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { ListProductsComponent } from './list-products/list-products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { AdminProductEditComponent } from './admin-product-edit/admin-product-edit.component';
+import { ContactComponent } from './contact/contact.component';
 
-
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
-  declarations: [
+  declarations: [						
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
       HomeComponent,
-      AdminDashboardComponent
+      AdminDashboardComponent,
+      NotfoundComponent,
+      ListProductsComponent,
+      ProductDetailComponent,
+      CarouselComponent,
+      AdminProductEditComponent,
+      ContactComponent
    ],
   imports: [
     BrowserModule,
@@ -28,8 +44,15 @@ import { appRoutes } from './routes';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: [], // token gönderilecek adres
+        disallowedRoutes: ["localhost:5000/auth"],//token gönderilmeyecek adres
+      },
+    }),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

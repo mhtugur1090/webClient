@@ -52,6 +52,9 @@ logout()
 
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate//herhangi bir linkin aktif olup olmama özelliğini ize getircek olan bir interface.
 {
 

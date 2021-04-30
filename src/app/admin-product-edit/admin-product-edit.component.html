@@ -1,0 +1,129 @@
+<div class="card" *ngIf="product">
+  <form #form="ngForm" class="">
+    <div class="row my-3 mx-3">
+      <div class="col-md-6">
+        <input type="hidden" name="id" [value]="product.id" />
+        <div class="row mb-3">
+          <label for="name" class="col-sm-3 col-form-label">Ürün ismi:</label>
+          <div class="col-sm-9">
+            <input
+              type="text"
+              class="form-control"
+              required
+              name="name"
+              [(ngModel)]="product.name"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="description" class="col-sm-3 col-form-label"
+            >Açıklama</label
+          >
+          <div class="col-sm-9">
+            <textarea
+              type="text"
+              class="form-control"
+              required
+              name="description"
+              [(ngModel)]="product.description"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="category" class="col-sm-3 col-form-label"
+            >Kategori:</label
+          >
+          <div class="col-sm-9">
+            <select
+              class="form-select"
+              name="category"
+              [(ngModel)]="product.category"
+            >
+              <option selected>Kategori</option>
+              <option value="Kategori1">Kategori 1</option>
+              <option value="Kategori2">Kategori 2</option>
+              <option value="Kategori3">Kategori 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="thickness" class="col-sm-3 col-form-label"
+            >Kalınlık:</label
+          >
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="thickness"
+              [(ngModel)]="product.thickness"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="width" class="col-sm-3 col-form-label">Genislik:</label>
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="width"
+              [(ngModel)]="product.width"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="length" class="col-sm-3 col-form-label">Uzunluk:</label>
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="length"
+              [(ngModel)]="product.length"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="usage" class="col-sm-3 col-form-label"
+            >Kullanım Yerleri:</label
+          >
+          <div class="col-sm-9">
+            <input type="text" name="usage" [(ngModel)]="product.usage" />
+          </div>
+        </div>
+
+        <button [disabled]="!form.dirty" class="btn btn-warning">
+          Güncelle
+        </button>
+        <button
+          type="button"
+          class="btn btn-debug ml-3"
+          (click)="cancelButton()"
+        >
+          İptal
+        </button>
+      </div>
+      <div class="col-md-6">
+        <div class="card" style="width: 18rem">
+          <img
+            *ngIf="product.image"
+            src="{{ product.image.path }}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">
+              <input
+                type="file"
+                name="imgPath"
+                [(ngModel)]="imgPath"
+                #file
+                placeholder="resim seç"
+                (change)="UploadFile(file.files)"
+              />
+            </p>
+            <p *ngIf="product.image">image path : {{imgPath}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,58 @@
+
+<!--
+<div *ngIf="product">
+<p>{{product.id}}</p>
+<p>{{product.name}}</p>
+<p>{{product.description}}</p>
+</div>
+-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container" *ngIf="product">
+    <div class="row">
+        <div class="col-lg-12 bg-primary p-2 text-white mt-2 text-center text-capitalize">
+            <h2>Ürün : {{product.name}}</h2>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-1 text-center">
+            <ul class="nav nav-tabs row text-center pro-details" id="myTab" role="tablist">
+                <li class="nav-item col-lg-12 mb-2">
+                    <img *ngIf="product.image" class="img-fluid active h-100" src="{{product.image.path}}"  id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"/>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-4 text-center border-right border-secondery">
+            <div class="tab-content row h-100 d-flex justify-content-center align-items-center" id="myTabContent">
+                <div class="tab-pane fade show active col-lg-12" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <img *ngIf="product.image" class="img-fluid" src="{{product.image.path}}" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <h3>
+              Ürün Hakkında <h5 *ngIf="product.active" style="color: seagreen;">Stokta</h5> <h5 *ngIf="!product.active" style="color:red;">Stokta değil</h5>
+            </h3>
+            <p>{{product.description}}</p>
+            <h5>
+              Özellikleri:
+            </h5>
+            <ul>
+              <li><b>Kalınlık:</b> {{product.thickness}} <b>cm</b></li>
+              <li><b>Genişlik:</b> {{product.width}} <b>cm</b></li>
+              <li><b>Uzunluk:</b>{{product.length}} <b>cm</b></li>
+          </ul>
+            <h5>
+                Kullanım alanları:
+            </h5>
+            <p>
+              {{product.usage}}
+            </p>
+        </div>
+    </div>
+</div>
+

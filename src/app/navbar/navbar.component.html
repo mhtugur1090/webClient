@@ -10,7 +10,7 @@
 </head>
   <body>
 
-    <nav class="navbar navbar-expand-sm   navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm   navbar-light bg-warning">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Sahin Kereste <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#"><strong>Sahin Kereste</strong> <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Hakkında</a>
@@ -34,7 +34,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">İletişim</a>
+            <a class="nav-link" [routerLink]="['/contact']"  href="#">İletişim</a>
           </li>
            <!-- <li class="nav-item dropdown dmenu">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -50,7 +50,9 @@
             </div>
           </li> -->
           </ul>
-          <div class="social-part">
+          <div class="social-part ml-auto">
+
+            <a href="" *ngIf="_authService.loggedIn()" class="mr-2" [routerLink]="['/dashboard']">Ayarlar</a>
             <a href="" *ngIf="_authService.loggedIn()" class="mr-2" (click)="logout()">admin Cıkış</a>
 
             <i class="fa fa-facebook" aria-hidden="true"></i>
