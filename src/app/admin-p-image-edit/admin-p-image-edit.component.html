@@ -1,0 +1,19 @@
+<div *ngIf="gettingProduct" class="card" style="width: 18rem">
+  <img
+    *ngIf="gettingProduct.image"
+    src="{{gettingProduct.image.path}}"
+    class="card-img-top"
+    alt="..."
+  />
+  <div class="card-body">
+    <p class="card-text">
+      <input
+        type="file"
+        #file
+        placeholder="resim seç"
+        (change)="UploadFile(file.files)"
+      />
+    </p>
+    <p *ngIf="gettingProduct.image">image path : {{gettingProduct.image.path}}</p>
+  </div>
+</div>

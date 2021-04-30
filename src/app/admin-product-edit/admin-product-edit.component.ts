@@ -12,13 +12,16 @@ import { UploadService } from '../_services/upload.service';
 })
 export class AdminProductEditComponent implements OnInit {
   product?: Product;
-  files: any;
-  imgPath?: string;
+  public respone: any = { dbPath: '' };
+  public serverPath:string="http://localhost:5000/";
+
+  imChange?:string;
+  imgChangeFlag:boolean=false;
+
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private location: Location,
-    private uploadService: UploadService
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -29,8 +32,7 @@ export class AdminProductEditComponent implements OnInit {
     this.productService.getProduct(this.route.snapshot.params['id']).subscribe(
       (result) => {
         this.product = result;
-        this.imgPath = this.product.image?.path;
-        console.log(this.product);
+        this.imChange = this.product.image?.path;
       },
       (err) => {
         console.log(err);
@@ -38,21 +40,6 @@ export class AdminProductEditComponent implements OnInit {
     );
   }
 
-  UploadFile(files: any) {
-    if (files.length === 0) {
-      return;
-    }
-    let fileToUpload = <File>files[0];
-    if( this.product && this.product.image)
-    {
-      this.product.image.path = fileToUpload.name;
-    }
-
-
-
-
-    //TODO: upload servisini çağır.
-  }
 
   cancelButton() {
     this.location.back();
@@ -63,4 +50,22 @@ export class AdminProductEditComponent implements OnInit {
 
 
   }
+  uploadedImg(event: any) {
+
+    this.respone = event;
+    this.serverPath +=this.respone.dbPath+"";
+    if(this.product && this.product.image)
+    {
+      this.product.image.path = this.serverPath;
+      if(this.imChange === this.serverPath)
+      {
+        this.imgChangeFlag=false;
+      }else
+      {
+        this.imgChangeFlag=true;
+      }
+
+    }
+  }
+
 }

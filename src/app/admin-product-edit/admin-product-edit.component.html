@@ -89,8 +89,8 @@
             <input type="text" name="usage" [(ngModel)]="product.usage" />
           </div>
         </div>
-
-        <button [disabled]="!form.dirty" type="submit" class="btn btn-warning">
+        {{imgChangeFlag}}
+        <button [disabled]="!form.dirty && !imgChangeFlag" type="submit" class="btn btn-warning">
           Güncelle
         </button>
         <button
@@ -102,28 +102,8 @@
         </button>
       </div>
       <div class="col-md-6">
-        <div class="card" style="width: 18rem">
-          <img
-            *ngIf="product.image"
-            src="{{ product.image.path }}"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              <input
-                type="file"
-                name="product.image.path"
-                *ngIf="product.image"
-                [(ngModel)]="product.image.path"
-                #file
-                placeholder="resim seç"
-                (change)="UploadFile(file.files)"
-              />
-            </p>
-            <p *ngIf="product.image">image path : {{product.image.path}}</p>
-          </div>
-        </div>
+        <app-admin-p-image-edit (onUploadFinished)="uploadedImg($event)" [gettingProduct]="product" ></app-admin-p-image-edit>
+
       </div>
     </div>
   </form>
