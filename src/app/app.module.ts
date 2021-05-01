@@ -21,13 +21,15 @@ import { AdminProductEditComponent } from './admin-product-edit/admin-product-ed
 import { ContactComponent } from './contact/contact.component';
 import { AdminPImageEditComponent } from './admin-p-image-edit/admin-p-image-edit.component';
 import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
+import { DashboardInfoComponent } from './dashboard-info/dashboard-info.component';
+import { InfoComponent } from './info/info.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -40,7 +42,9 @@ export function tokenGetter() {
       AdminProductEditComponent,
       ContactComponent,
       AdminPImageEditComponent,
-      DashboardProductComponent
+      DashboardProductComponent,
+      DashboardInfoComponent,
+      InfoComponent
    ],
   imports: [
     BrowserModule,

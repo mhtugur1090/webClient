@@ -5,8 +5,10 @@ import { AdminProductEditComponent } from "./admin-product-edit/admin-product-ed
 import { AuthGuard } from "./auth.service";
 import { CarouselComponent } from "./carousel/carousel.component";
 import { ContactComponent } from "./contact/contact.component";
+import { DashboardInfoComponent } from "./dashboard-info/dashboard-info.component";
 import { DashboardProductComponent } from "./dashboard-product/dashboard-product.component";
 import { HomeComponent } from "./home/home.component";
+import { InfoComponent } from "./info/info.component";
 import { ListProductsComponent } from "./list-products/list-products.component";
 import { NotfoundComponent } from "./notfound/notfound.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
@@ -20,12 +22,18 @@ export const appRoutes:Routes =
   {path:"admin",component:AdminLoginComponent},
   {path:"products",component:ListProductsComponent},
   {path:"contact",component:ContactComponent},
-  //{path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard]},
-
+  {path:"info",component:InfoComponent},
   {path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard],children:[
     {
       path:"dashboard-product" , component:DashboardProductComponent, outlet:"dashboard",canActivate:[AuthGuard]
+    },
+    {
+      path:"dashboard-info" , component:DashboardInfoComponent, outlet:"dashboard",canActivate:[AuthGuard]
+    },
+    {
+      path:"" , component:DashboardProductComponent, outlet:"dashboard",canActivate:[AuthGuard]
     }
+
   ]},
 
   {path:'',component:HomeComponent},
