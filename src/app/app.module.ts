@@ -20,13 +20,14 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { AdminProductEditComponent } from './admin-product-edit/admin-product-edit.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminPImageEditComponent } from './admin-p-image-edit/admin-p-image-edit.component';
+import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -38,7 +39,8 @@ export function tokenGetter() {
       CarouselComponent,
       AdminProductEditComponent,
       ContactComponent,
-      AdminPImageEditComponent
+      AdminPImageEditComponent,
+      DashboardProductComponent
    ],
   imports: [
     BrowserModule,

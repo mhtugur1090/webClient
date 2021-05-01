@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  selector: 'app-dashboard-product',
+  templateUrl: './dashboard-product.component.html',
+  styleUrls: ['./dashboard-product.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
+export class DashboardProductComponent implements OnInit {
 
   products?:Product[];
   constructor(private _proService:ProductService) { }
@@ -23,7 +22,6 @@ export class AdminDashboardComponent implements OnInit {
       {
         this.products = products;
       });
-
   }
 
 }

@@ -1,30 +1,21 @@
-<div class="container">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<div class="container row mt-5">
+	<div class='sidenav col-3' id='navBar'>
+	    <div class='list-group'>
+	        <div href='#' [routerLink]="[{outlets:{dashboard:['dashboard-product']}}]" class='list-group-item  list-group-item-action' data-toggle="list" role="tab">Ürünler</div>
+	        <div href='#' class='list-group-item list-group-item-action' data-toggle="list" role="tab">İletişim bilgileri</div>
+	        <div href='#' class='list-group-item list-group-item-action' data-toggle="list" role="tab">Hakkımızda</div>
+	        <div href='#' class='list-group-item list-group-item-action' data-toggle="list" role="tab">In-Progress</div>
+	        <div href='#' class='list-group-item list-group-item-action' data-toggle="list" role="tab">Completed</div>
+	    </div>
+	</div>
+	<div class='col-9' id='main'>
 
-
-<table class="table table-striped custab">
-  <thead>
-  <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b>Yeni Ürün Ekle</a>
-      <tr>
-          <th>ID</th>
-          <th>Ürün İsmi</th>
-          <th>Kategori</th>
-          <th>Stok Durumu</th>
-          <th class="text-center">İşlem</th>
-      </tr>
-  </thead>
-          <tr *ngFor="let product of products">
-              <td>{{product.id}}</td>
-              <td>{{product.name}}</td>
-              <td>{{product.category}}</td>
-              <td *ngIf="product.active"><h5 style="color: seagreen;">stokta</h5></td>
-              <td *ngIf="!product.active"><h5 style="color: red;">stokta değil</h5></td>
-              <td class="text-center">
-                <a class='btn btn-info btn-xs mr-2' [routerLink]="['/adminedit/',product.id]" href="#"><span class="glyphicon glyphicon-edit"></span>Düzenle</a>
-                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>Sil</a>
-              </td>
-          </tr>
-
-  </table>
-
+    <router-outlet name="dashboard"></router-outlet>
+	</div>
 </div>
+

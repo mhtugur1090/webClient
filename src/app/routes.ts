@@ -5,6 +5,7 @@ import { AdminProductEditComponent } from "./admin-product-edit/admin-product-ed
 import { AuthGuard } from "./auth.service";
 import { CarouselComponent } from "./carousel/carousel.component";
 import { ContactComponent } from "./contact/contact.component";
+import { DashboardProductComponent } from "./dashboard-product/dashboard-product.component";
 import { HomeComponent } from "./home/home.component";
 import { ListProductsComponent } from "./list-products/list-products.component";
 import { NotfoundComponent } from "./notfound/notfound.component";
@@ -19,7 +20,15 @@ export const appRoutes:Routes =
   {path:"admin",component:AdminLoginComponent},
   {path:"products",component:ListProductsComponent},
   {path:"contact",component:ContactComponent},
-  {path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard]},
+  //{path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard]},
+
+  {path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard],children:[
+    {
+      path:"dashboard-product" , component:DashboardProductComponent, outlet:"dashboard",canActivate:[AuthGuard]
+    }
+  ]},
+
   {path:'',component:HomeComponent},
-  {path:'**',component:NotfoundComponent}
+  {path:'**',component:NotfoundComponent},
+
 ];
