@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(
+    public _authService: AuthService,
+    private router: Router
+  ) {}
 
-  constructor(public _authService:AuthService,private router:Router) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-
-  logout()
-  {
+  logout() {
     this._authService.logout();
-    this.router.navigate(["home"]);
+    this.router.navigate(['home']);
+
   }
-
-
 }

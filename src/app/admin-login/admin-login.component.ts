@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -11,7 +12,7 @@ export class AdminLoginComponent implements OnInit {
 
   modelform:any ={username:"",password:""}
 
-  constructor(private _authService:AuthService,private _router:Router) { }
+  constructor(private _authService:AuthService,private _router:Router,private _alertify:AlertifyService) { }
 
   ngOnInit() {
   }
@@ -20,11 +21,11 @@ export class AdminLoginComponent implements OnInit {
   {
     this._authService.login(this.modelform).subscribe(success=>
       {
-        alert("login basarili");
+        this._alertify.success("Giriş başarılı");
         this._router.navigate(["dashboard"]);
       },err=>
       {
-        alert("basarisiz");
+        this._alertify.error("Giriş başarısız");
         this._router.navigate(["admin"]);
       });
 

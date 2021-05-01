@@ -46,13 +46,13 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    JwtModule.forRoot({
+    /*JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["http://localhost:5000"], // token gönderilecek adres
+        allowedDomains: ["localhost:5000"], // token gönderilecek adres
         disallowedRoutes: ["localhost:5000/auth"],//token gönderilmeyecek adres
       },
-    }),
+    }),*/
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

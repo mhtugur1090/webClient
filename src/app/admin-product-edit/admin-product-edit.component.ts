@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { Location } from '@angular/common';
-import { Router }  from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -13,16 +13,18 @@ import { Router }  from '@angular/router';
 export class AdminProductEditComponent implements OnInit {
   product?: Product;
   public respone: any = { dbPath: '' };
-  public serverPath:string="http://localhost:5000/";
+  public serverPath: string = 'http://localhost:5000/';
 
-  imChange?:string;
-  imgChangeFlag:boolean=false;
+  imChange?: string;
+  imgChangeFlag: boolean = false;
+
+  stokChange:boolean=false;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
     private location: Location,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -41,42 +43,43 @@ export class AdminProductEditComponent implements OnInit {
     );
   }
 
-
   cancelButton() {
     this.location.back();
   }
 
   submitForm() {
-
-    if(this.product)
-    this.productService.putProduct(this.product).subscribe(result=>
-      {
-        console.log("Güncelleme basarılı");
-        //this.router.navigate(['dashboard']);
-        this.location.back();
-      },err=>
-      {
-        console.log(err);
-      });
-
-
+    if (this.product)
+      this.productService.putProduct(this.product).subscribe(
+        (result) => {
+          console.log('Güncelleme basarılı');
+          //this.router.navigate(['dashboard']);
+          this.location.back();
+        },
+        (err) => {
+          console.log('Hata>>>' + err);
+        }
+      );
   }
   uploadedImg(event: any) {
-
     this.respone = event;
-    this.serverPath +=this.respone.dbPath+"";
-    if(this.product && this.product.image)
-    {
+    this.serverPath += this.respone.dbPath + '';
+    if (this.product && this.product.image) {
       this.product.image.path = this.serverPath;
-      if(this.imChange === this.serverPath)
-      {
-        this.imgChangeFlag=false;
-      }else
-      {
-        this.imgChangeFlag=true;
+      if (this.imChange === this.serverPath) {
+        this.imgChangeFlag = false;
+      } else {
+        this.imgChangeFlag = true;
       }
-
     }
   }
 
+  onItemChange(value: boolean) {
+    console.log(value);
+    if(this.product)
+    {
+      this.product.active = value;
+      this.stokChange=true;
+    }
+
+  }
 }
