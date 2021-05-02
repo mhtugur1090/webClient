@@ -3,17 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Aboutus } from '../_models/about';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: 'Bearer ' + localStorage.getItem('token'),
-  }),
-};
+const httpOptions=
+{
+  headers: new HttpHeaders(
+    {
+      'Authorization': 'Bearer '+localStorage.getItem('token')
+    })
+}
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AboutService {
-  private baseUrl: string = 'http://localhost:5000/about/';
+  private baseUrl: string = 'http://localhost:5000/about';
   constructor(private http: HttpClient) {}
 
   getAbout(): Observable<Aboutus> {
@@ -21,6 +24,6 @@ export class AboutService {
   }
 
   putAbout(_about: Aboutus): Observable<Aboutus> {
-    return this.http.put<Aboutus>(this.baseUrl, httpOptions);
+    return this.http.put<Aboutus>(this.baseUrl,_about, httpOptions);
   }
 }

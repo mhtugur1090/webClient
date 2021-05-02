@@ -1,3 +1,11 @@
 <p>
-  dashboard-info works!
+  Hakkımızda :
 </p>
+<div class="form-floating">
+
+  <textarea *ngIf="about.message" class="form-control"  style="height: 100px" [(ngModel)]="aboutMessage">
+  {{about.message}}
+  </textarea>
+  <br>
+  <button [disabled]="!IschangeMessage()" (click)="updateAbout()">Güncelle</button>
+</div>
