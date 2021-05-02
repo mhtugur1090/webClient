@@ -22,7 +22,6 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminPImageEditComponent } from './admin-p-image-edit/admin-p-image-edit.component';
 import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
 import { DashboardInfoComponent } from './dashboard-info/dashboard-info.component';
-import { InfoComponent } from './info/info.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 
 export function tokenGetter() {
@@ -30,7 +29,7 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -45,7 +44,6 @@ export function tokenGetter() {
       AdminPImageEditComponent,
       DashboardProductComponent,
       DashboardInfoComponent,
-      InfoComponent,
       AboutusComponent
    ],
   imports: [

@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { AboutusComponent } from "./aboutus/aboutus.component";
 import { AdminDashboardComponent } from "./admin-dashboard/admin-dashboard.component";
 import { AdminLoginComponent } from "./admin-login/admin-login.component";
 import { AdminProductEditComponent } from "./admin-product-edit/admin-product-edit.component";
@@ -8,7 +9,6 @@ import { ContactComponent } from "./contact/contact.component";
 import { DashboardInfoComponent } from "./dashboard-info/dashboard-info.component";
 import { DashboardProductComponent } from "./dashboard-product/dashboard-product.component";
 import { HomeComponent } from "./home/home.component";
-import { InfoComponent } from "./info/info.component";
 import { ListProductsComponent } from "./list-products/list-products.component";
 import { NotfoundComponent } from "./notfound/notfound.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
@@ -22,7 +22,7 @@ export const appRoutes:Routes =
   {path:"admin",component:AdminLoginComponent},
   {path:"products",component:ListProductsComponent},
   {path:"contact",component:ContactComponent},
-  {path:"info",component:InfoComponent},
+  {path:"aboutus",component:AboutusComponent},
   {path:"dashboard",component:AdminDashboardComponent, canActivate:[AuthGuard],children:[
     {
       path:"dashboard-product" , component:DashboardProductComponent, outlet:"dashboard",canActivate:[AuthGuard]
