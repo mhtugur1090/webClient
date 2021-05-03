@@ -1,0 +1,77 @@
+<div class="card" *ngIf="contact">
+  <div class="card-title text-md-center">
+    İletişim Bilgiler <br />
+    Güncelleme
+  </div>
+  <div class="container">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for="">E-mail adresi :</label>
+        </div>
+        <div class="col-md-8">
+          <input type="email" #email [value]="contact.email" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for=""
+            ><i class="fa fa-instagram" aria-hidden="true"></i> Instagram :</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" #instagram [value]="contact.instagram"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for=""
+            ><i class="fa fa-facebook" aria-hidden="true"></i> Facebook :</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" #facebook [value]="contact.facebook"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for=""
+            ><i class="fa fa-twitter" aria-hidden="true"></i> Twitter :</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" #twitter [value]="contact.twitter"/>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-4 col-sm-2">
+          <label for=""
+            ><i class="fa fa-phone mr-2" aria-hidden="true">Telefon :</i></label><button class="btn btn-sm border-success" (click)="phoneAdd(newPhone.value); newPhone.value=''"><i class="fa fa-plus">Ekle</i></button>
+            <input type="tel" class="mb-2" style="color: crimson;" #newPhone (keypress)="keyPressNumbersDecimal($event)" placeholder="Yeni Telefon Ekle"/> <br>
+        </div>
+        <div *ngIf="contact.phones" class="col-md-8 col-sm-10">
+          <span *ngFor="let item of contact.phones">
+            <input type="text" class="mb-2 mr-2" [value]="item.phone"/>  <i class="fa fa-trash"></i> <br>
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4 col-sm-2">
+          <label for=""
+            ><i class="fa fa-location-arrow mr-2" aria-hidden="true">Adres :</i></label><button class="btn btn-sm border-success" (click)="addressAdd(newAddress.value);newAddress.value=''" ><i class="fa fa-plus">Ekle</i></button>
+            <input type="text"  class="mb-2" style="color: crimson;" #newAddress placeholder="Yeni Adres Ekle"/> <br>
+        </div>
+        <div *ngIf="contact.addresses" class="col-md-8 col-sm-10">
+          <span *ngFor="let item of contact.addresses">
+            <input type="text" class="mb-2 mr-2" [value]="item.address"/>  <i class="fa fa-trash"></i> <br>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

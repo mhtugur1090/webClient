@@ -23,13 +23,14 @@ import { AdminPImageEditComponent } from './admin-p-image-edit/admin-p-image-edi
 import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
 import { DashboardInfoComponent } from './dashboard-info/dashboard-info.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { DashboardContactComponent } from './dashboard-contact/dashboard-contact.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -44,7 +45,8 @@ export function tokenGetter() {
       AdminPImageEditComponent,
       DashboardProductComponent,
       DashboardInfoComponent,
-      AboutusComponent
+      AboutusComponent,
+      DashboardContactComponent
    ],
   imports: [
     BrowserModule,
