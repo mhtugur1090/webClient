@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Address } from '../_models/address';
 import { Contact } from '../_models/contact';
 import { Phone } from '../_models/phone';
+import { AlertifyService } from '../_services/alertify.service';
 import { ContactService } from '../_services/contact.service';
 
 @Component({
@@ -12,10 +13,14 @@ import { ContactService } from '../_services/contact.service';
 export class DashboardContactComponent implements OnInit {
   contact?: Contact;
   orginalContact: Contact = new Contact();
-
   isAddphoneOrAddress: boolean = false;
 
-  constructor(private _contactService: ContactService) {
+  saveProccess:boolean=false;
+
+  constructor(
+    private _contactService: ContactService,
+    private _alert: AlertifyService
+  ) {
     this.orginalContact.phones = new Array<Phone>();
     this.orginalContact.addresses = new Array<Address>();
   }
@@ -29,6 +34,29 @@ export class DashboardContactComponent implements OnInit {
       this.contact = result;
       this.orginalContactTemplate(result);
     });
+  }
+
+  updateContact() {
+    // Güncelleme burada yapılacak
+    console.log('Phone Güncelleme>>>>' + this.contact?.phones?.length);
+    console.log('Phone orjinal>>>>' + this.orginalContact?.phones?.length);
+    this.saveProccess=true;
+    if (this.contact != undefined) {
+      this._contactService.putProduct(this.contact).subscribe((result) => {
+        this._alert.success('İletişim bilgileri güncellendi');
+        this.isAddphoneOrAddress=false;
+        this.saveProccess=false;
+      },err=>
+      {
+        this._alert.error("Güncellenmede hata oluştu.");
+        this.saveProccess = false;
+      });
+    }
+  }
+
+  cancelButton() {
+    this.contact = this.orginalContact;
+    this.isAddphoneOrAddress = false;
   }
 
   phoneAdd(value: string) {
@@ -48,7 +76,6 @@ export class DashboardContactComponent implements OnInit {
       this.contact?.phones?.splice(phonesIndex, 1);
     }
     this.isAddphoneOrAddress = true;
-
   }
 
   addressAdd(value: string) {
@@ -67,12 +94,6 @@ export class DashboardContactComponent implements OnInit {
       this.contact?.addresses?.splice(addressIndex, 1);
     }
     this.isAddphoneOrAddress = true;
-  }
-
-  updateContact() {
-    // Güncelleme burada yapılacak
-    console.log('Phone Güncelleme>>>>' + this.contact?.phones?.length);
-    console.log('Phone orjinal>>>>' + this.orginalContact?.phones?.length);
   }
 
   orginalContactTemplate(result: Contact) {

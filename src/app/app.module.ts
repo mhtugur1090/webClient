@@ -24,13 +24,14 @@ import { DashboardProductComponent } from './dashboard-product/dashboard-product
 import { DashboardInfoComponent } from './dashboard-info/dashboard-info.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { DashboardContactComponent } from './dashboard-contact/dashboard-contact.component';
+import { LoadingpageComponent } from './loadingpage/loadingpage.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -46,7 +47,8 @@ export function tokenGetter() {
       DashboardProductComponent,
       DashboardInfoComponent,
       AboutusComponent,
-      DashboardContactComponent
+      DashboardContactComponent,
+      LoadingpageComponent
    ],
   imports: [
     BrowserModule,
