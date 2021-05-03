@@ -48,6 +48,7 @@ export class DashboardContactComponent implements OnInit {
       this.contact?.phones?.splice(phonesIndex, 1);
     }
     this.isAddphoneOrAddress = true;
+
   }
 
   addressAdd(value: string) {
