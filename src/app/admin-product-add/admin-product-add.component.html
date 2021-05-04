@@ -1,0 +1,140 @@
+<div class="card" *ngIf="product">
+
+    <div class="row my-3 mx-3">
+      <div class="col-md-6">
+        <form #form="ngForm" (submit)="submitForm()">
+        <input type="hidden" name="id" [value]="product.id" />
+        <div class="row mb-3">
+          <label for="name" class="col-sm-3 col-form-label">Ürün ismi:</label>
+          <div class="col-sm-9">
+            <input
+              type="text"
+              class="form-control"
+              required
+              placeholder="Ürün ismini giriniz"
+              name="name"
+              [(ngModel)]="product.name"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="description" class="col-sm-3 col-form-label"
+            >Açıklama</label
+          >
+          <div class="col-sm-9">
+            <textarea
+              type="text"
+              class="form-control"
+              placeholder="Açıklama giriniz"
+              required
+              name="description"
+              [(ngModel)]="product.description"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="category" class="col-sm-3 col-form-label"
+            >Kategori:</label
+          >
+          <div class="col-sm-9">
+            <select
+              class="form-select"
+              name="category"
+              [(ngModel)]="product.category"
+            >
+              <option selected>Kategori</option>
+              <option value="Kategori1">Kategori 1</option>
+              <option value="Kategori2">Kategori 2</option>
+              <option value="Kategori3">Kategori 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label  class="col-sm-3 col-form-label"
+            >Stok durumu:</label
+          >
+
+          <div class="col-sm-9" id="radio-group" >
+
+            <input type="radio" id="gender" name="radio-group"  [checked]="product.active"  (change)="onItemChange(true)">
+            <label for="gender"> Stokta </label><br>
+            <input type="radio" id="female" name="radio-group"  [checked]="!product.active" (change)="onItemChange(false)">
+            <label for="female"> Stokta değil </label><br>
+
+            <input type="hidden" name="stokChange" [(ngModel)]="stokChange" >
+          </div>
+
+
+        </div>
+        <div class="row mb-3">
+          <label for="thickness" class="col-sm-3 col-form-label"
+            >Kalınlık:</label
+          >
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="thickness"
+              placeholder="cm cinsinden"
+              [(ngModel)]="product.thickness"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="width" class="col-sm-3 col-form-label">Genislik:</label>
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="width"
+              placeholder="cm cinsinden"
+              [(ngModel)]="product.width"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="length" class="col-sm-3 col-form-label">Uzunluk:</label>
+          <div class="col-sm-9">
+            <input
+              type="number"
+              name="length"
+              placeholder="cm cinsinden"
+              [(ngModel)]="product.length"
+              step="1"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="usage" class="col-sm-3 col-form-label"
+            >Kullanım Yerleri:</label
+          >
+          <div class="col-sm-9">
+            <input type="text" name="usage" placeholder="Kısaca bahsediniz" [(ngModel)]="product.usage" />
+          </div>
+        </div>
+        <button
+          [disabled]="form.invalid"
+          type="submit"
+          class="btn btn-success"
+        >
+          Ekle
+        </button>
+        <button
+          type="button"
+          class="btn btn-debug ml-3"
+
+        >
+          İptal
+        </button>
+      </form>
+      </div>
+      <div class="col-md-6">
+        <app-admin-p-image-edit
+          (onUploadFinished)="uploadedImg($event)"
+          [gettingProduct]="product"
+        ></app-admin-p-image-edit>
+      </div>
+    </div>
+
+</div>
+

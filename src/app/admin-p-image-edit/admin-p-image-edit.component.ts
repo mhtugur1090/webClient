@@ -51,7 +51,7 @@ export class AdminPImageEditComponent implements OnInit {
         {
 
           this.message = "upload success";
-          this.onUploadFinished.emit(event.body);// bu içersinde upload edilen dosyaya ait db path ini saklar. Bu da bize upload edilmiş dosyaya erişmek için ilgili pathi bize verir.
+          this.onUploadFinished.emit(event.body);// bu içersinde upload edilen dosyaya ait db path ini saklar. Bu da bize upload edilmiş dosyaya erişmek için ilgili pathi bize verir(seerver daki).
 
         }
       });
