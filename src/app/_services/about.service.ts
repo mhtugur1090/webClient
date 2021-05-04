@@ -3,27 +3,39 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Aboutus } from '../_models/about';
 
-const httpOptions=
-{
-  headers: new HttpHeaders(
-    {
-      'Authorization': 'Bearer '+localStorage.getItem('token')
-    })
-}
+
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AboutService {
+
+
+  httpOptions=
+  {
+    headers: new HttpHeaders(
+      {
+        'Authorization': 'Bearer '+localStorage.getItem('token')
+      })
+  }
+
   private baseUrl: string = 'http://localhost:5000/about';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient)
+  {
+    console.log(">>"+this.httpOptions.headers.get('Authorization'));
+  }
 
   getAbout(): Observable<Aboutus> {
     return this.http.get<Aboutus>(this.baseUrl);
   }
 
   putAbout(_about: Aboutus): Observable<Aboutus> {
-    return this.http.put<Aboutus>(this.baseUrl,_about, httpOptions);
+    return this.http.put<Aboutus>(this.baseUrl,_about, this.httpOptions);
+  }
+
+  getHeaderAuth()
+  {
+
   }
 }

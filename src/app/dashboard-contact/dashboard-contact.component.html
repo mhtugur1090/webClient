@@ -75,6 +75,7 @@
                 >Telefon :</i
               ></label
             ><button
+              type="button"
               class="btn btn-sm border-success"
               (click)="phoneAdd(newPhone.value); newPhone.value = ''"
             >
@@ -90,7 +91,7 @@
             />
             <br />
           </div>
-          <div *ngIf="contact.phones" class=" col-md-8">
+          <div *ngIf="contact.phones" class="col-md-8">
             <span *ngFor="let item of contact.phones">
               <div class="row">
                 <div class="col mb-3">
@@ -117,6 +118,7 @@
               ></label
             ><button
               class="btn btn-sm border-success"
+              type="button"
               (click)="addressAdd(newAddress.value); newAddress.value = ''"
             >
               <i class="fa fa-plus">Ekle</i>
@@ -130,7 +132,7 @@
             />
             <br />
           </div>
-          <div *ngIf="contact.addresses" class=" col-md-8">
+          <div *ngIf="contact.addresses" class="col-md-8">
             <span *ngFor="let item of contact.addresses">
               <div class="row">
                 <div class="col-md-6 mb-3">
@@ -151,11 +153,22 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" [disabled]="!contactForm.dirty && !isAddphoneOrAddress" class="btn btn-info mr-2">Onayla</button>
-      <button type="button" class="btn btn-outline-secondary" (click)="cancelButton()">İptal</button>
+      <button
+        type="submit"
+        [disabled]="!contactForm.dirty && !isAddphoneOrAddress"
+        class="btn btn-info mr-2"
+      >
+        Onayla
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="cancelButton()"
+      >
+        İptal
+      </button>
     </div>
   </form>
 </div>
 
 <app-loadingpage [loading]="saveProccess"></app-loadingpage>
-
