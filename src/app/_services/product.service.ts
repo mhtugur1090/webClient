@@ -3,19 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../_models/product';
 
-
-const httpOptions=
-{
-  headers: new HttpHeaders(
-    {
-      'Authorization': 'Bearer '+localStorage.getItem('token')
-    })
-}
-
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    }),
+  };
+
   private baseUrl: string = 'http://localhost:5000/product/';
   product?: Product[];
   constructor(private http: HttpClient) {}
@@ -29,6 +26,10 @@ export class ProductService {
   }
 
   putProduct(_product: Product): Observable<Product> {
-    return this.http.put<Product>(this.baseUrl + _product.id, _product,httpOptions);
+    return this.http.put<Product>(
+      this.baseUrl + _product.id,
+      _product,
+      this.httpOptions
+    );
   }
 }

@@ -38,8 +38,7 @@ export class DashboardContactComponent implements OnInit {
 
   updateContact() {
     // Güncelleme burada yapılacak
-    console.log('Phone Güncelleme>>>>' + this.contact?.phones?.length);
-    console.log('Phone orjinal>>>>' + this.orginalContact?.phones?.length);
+
     this.saveProccess=true;
     if (this.contact != undefined) {
       this._contactService.putProduct(this.contact).subscribe((result) => {
