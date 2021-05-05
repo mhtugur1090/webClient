@@ -1,8 +1,7 @@
 <div class="card" *ngIf="product">
-
-    <div class="row my-3 mx-3">
-      <div class="col-md-6">
-        <form #form="ngForm" (submit)="submitForm()">
+  <div class="row my-3 mx-3">
+    <div class="col-md-6">
+      <form #form="ngForm" (submit)="submitForm()">
         <input type="hidden" name="id" [value]="product.id" />
         <div class="row mb-3">
           <label for="name" class="col-sm-3 col-form-label">Ürün ismi:</label>
@@ -11,10 +10,16 @@
               type="text"
               class="form-control"
               required
+              minlength="3"
               placeholder="Ürün ismini giriniz"
+              #name="ngModel"
               name="name"
               [(ngModel)]="product.name"
             />
+            <div *ngIf="!name.valid && name.touched" class="alert alert-danger" role="alert" >
+                <p *ngIf="name.errors && name.errors.required">* Ürün ismi zorunlu</p>
+                <p *ngIf="name.errors && name.errors.minlength">* en az 3 karakter giriniz</p>
+            </div>
           </div>
         </div>
         <div class="row mb-3">
@@ -26,7 +31,6 @@
               type="text"
               class="form-control"
               placeholder="Açıklama giriniz"
-              required
               name="description"
               [(ngModel)]="product.description"
             ></textarea>
@@ -50,21 +54,28 @@
           </div>
         </div>
         <div class="row mb-3">
-          <label  class="col-sm-3 col-form-label"
-            >Stok durumu:</label
-          >
+          <label class="col-sm-3 col-form-label">Stok durumu:</label>
 
-          <div class="col-sm-9" id="radio-group" >
+          <div class="col-sm-9" id="radio-group">
+            <input
+              type="radio"
+              id="gender"
+              name="radio-group"
+              [checked]="product.active"
+              (change)="onItemChange(true)"
+            />
+            <label for="gender"> Stokta </label><br />
+            <input
+              type="radio"
+              id="female"
+              name="radio-group"
+              [checked]="!product.active"
+              (change)="onItemChange(false)"
+            />
+            <label for="female"> Stokta değil </label><br />
 
-            <input type="radio" id="gender" name="radio-group"  [checked]="product.active"  (change)="onItemChange(true)">
-            <label for="gender"> Stokta </label><br>
-            <input type="radio" id="female" name="radio-group"  [checked]="!product.active" (change)="onItemChange(false)">
-            <label for="female"> Stokta değil </label><br>
-
-            <input type="hidden" name="stokChange" [(ngModel)]="stokChange" >
+            <input type="hidden" name="stokChange" [(ngModel)]="stokChange" />
           </div>
-
-
         </div>
         <div class="row mb-3">
           <label for="thickness" class="col-sm-3 col-form-label"
@@ -109,32 +120,25 @@
             >Kullanım Yerleri:</label
           >
           <div class="col-sm-9">
-            <input type="text" name="usage" placeholder="Kısaca bahsediniz" [(ngModel)]="product.usage" />
+            <input
+              type="text"
+              name="usage"
+              placeholder="Kısaca bahsediniz"
+              [(ngModel)]="product.usage"
+            />
           </div>
         </div>
-        <button
-          [disabled]="form.invalid"
-          type="submit"
-          class="btn btn-success"
-        >
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">
           Ekle
         </button>
-        <button
-          type="button"
-          class="btn btn-debug ml-3"
-
-        >
-          İptal
-        </button>
+        <button type="button" class="btn btn-debug ml-3">İptal</button>
       </form>
-      </div>
-      <div class="col-md-6">
-        <app-admin-p-image-edit
-          (onUploadFinished)="uploadedImg($event)"
-          [gettingProduct]="product"
-        ></app-admin-p-image-edit>
-      </div>
     </div>
-
+    <div class="col-md-6">
+      <app-admin-p-image-edit
+        (onUploadFinished)="uploadedImg($event)"
+        [gettingProduct]="product"
+      ></app-admin-p-image-edit>
+    </div>
+  </div>
 </div>
-

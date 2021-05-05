@@ -10,9 +10,15 @@
               type="text"
               class="form-control"
               required
+              minlength="3"
+              #name="ngModel"
               name="name"
               [(ngModel)]="product.name"
             />
+            <div *ngIf="!name.valid && name.touched" class="alert alert-danger" role="alert" >
+              <p *ngIf="name.errors && name.errors.required">* Ürün ismi zorunlu</p>
+              <p *ngIf="name.errors && name.errors.minlength">* en az 3 karakter giriniz</p>
+          </div>
           </div>
         </div>
         <div class="row mb-3">
@@ -23,7 +29,6 @@
             <textarea
               type="text"
               class="form-control"
-              required
               name="description"
               [(ngModel)]="product.description"
             ></textarea>
@@ -107,7 +112,7 @@
           </div>
         </div>
         <button
-          [disabled]="!form.dirty && !imgChangeFlag && !stokChange"
+          [disabled]="!form.dirty && !imgChangeFlag && !stokChange || (name.invalid || name.pristine)"
           type="submit"
           class="btn btn-warning"
         >

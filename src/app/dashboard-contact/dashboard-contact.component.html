@@ -74,9 +74,11 @@
               ><i class="fa fa-phone mr-2" aria-hidden="true"
                 >Telefon :</i
               ></label
-            ><button
+            >
+            <button
               type="button"
               class="btn btn-sm border-success"
+              [disabled]=""
               (click)="phoneAdd(newPhone.value); newPhone.value = ''"
             >
               <i class="fa fa-plus">Ekle</i>
