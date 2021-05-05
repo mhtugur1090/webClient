@@ -128,7 +128,7 @@
           <div class="my-4">
             <a *ngIf="contact && contact.facebook" href="{{contact.facebook}}"><i class="fab fa-facebook fa-3x pr-4"></i></a>
             <a *ngIf="contact && contact.instagram" href="{{contact.instagram}}"><i class="fab fa-instagram fa-3x pr-4"></i></a>
-            <a href=""><i class="fab fa-twitter fa-3x"></i></a>
+            <a *ngIf="contact && contact.twitter" href="{{contact.twitter}}"><i class="fab fa-twitter fa-3x" ></i></a>
           </div>
         </div>
       </div>

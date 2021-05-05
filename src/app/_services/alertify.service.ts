@@ -29,5 +29,9 @@ export class AlertifyService
     alertify.message(message);
 
   }
+  alert(message:string)
+  {
+    alertify.alert("Sitenin Mesajı",message);
+  }
 }
 

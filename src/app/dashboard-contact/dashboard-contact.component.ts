@@ -15,7 +15,7 @@ export class DashboardContactComponent implements OnInit {
   orginalContact: Contact = new Contact();
   isAddphoneOrAddress: boolean = false;
 
-  saveProccess:boolean=false;
+  saveProccess: boolean = false;
 
   constructor(
     private _contactService: ContactService,
@@ -39,17 +39,19 @@ export class DashboardContactComponent implements OnInit {
   updateContact() {
     // Güncelleme burada yapılacak
 
-    this.saveProccess=true;
+    this.saveProccess = true;
     if (this.contact != undefined) {
-      this._contactService.putProduct(this.contact).subscribe((result) => {
-        this._alert.success('İletişim bilgileri güncellendi');
-        this.isAddphoneOrAddress=false;
-        this.saveProccess=false;
-      },err=>
-      {
-        this._alert.error("Güncellenmede hata oluştu.");
-        this.saveProccess = false;
-      });
+      this._contactService.putProduct(this.contact).subscribe(
+        (result) => {
+          this._alert.success('İletişim bilgileri güncellendi');
+          this.isAddphoneOrAddress = false;
+          this.saveProccess = false;
+        },
+        (err) => {
+          this._alert.error('Güncellenmede hata oluştu.');
+          this.saveProccess = false;
+        }
+      );
     }
   }
 
@@ -59,10 +61,17 @@ export class DashboardContactComponent implements OnInit {
   }
 
   phoneAdd(value: string) {
-    var _phone = new Phone();
-    _phone.phone = value;
-    this.contact?.phones?.push(_phone);
-    this.isAddphoneOrAddress = true;
+    if(!valueIsEmpty(value))
+    {
+      var _phone = new Phone();
+      _phone.phone = value;
+      this.contact?.phones?.push(_phone);
+      this.isAddphoneOrAddress = true;
+    }else
+    {
+      this._alert.alert("Telefon numarası giriniz");
+    }
+
   }
 
   phoneDelete(_phone: Phone) {
@@ -78,10 +87,17 @@ export class DashboardContactComponent implements OnInit {
   }
 
   addressAdd(value: string) {
-    var _address = new Address();
-    _address.address = value;
-    this.contact?.addresses?.push(_address);
-    this.isAddphoneOrAddress = true;
+    if(!valueIsEmpty(value))
+    {
+      var _address = new Address();
+      _address.address = value;
+      this.contact?.addresses?.push(_address);
+      this.isAddphoneOrAddress = true;
+    }else
+    {
+      this._alert.alert("Adres bilgisini boş giremezsiniz");
+    }
+
   }
 
   addressDelete(_address: Address) {
@@ -119,4 +135,8 @@ export class DashboardContactComponent implements OnInit {
     }
     return true;
   }
+}
+function valueIsEmpty(value: string): boolean {
+  if (value === '') return true;
+  return false;
 }
