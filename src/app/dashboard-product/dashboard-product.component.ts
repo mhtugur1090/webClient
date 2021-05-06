@@ -29,7 +29,7 @@ export class DashboardProductComponent implements OnInit {
 
   deleteProduct(delPro: Product) {
     console.log('Silincecek ürün id si: ' + delPro.id);
-
+    //diziden de silmemiz gerekiyor ki sayfaya yansısın.
     this._proService.deleteProduct(delPro).subscribe((result) => {
       var index = this.products?.indexOf(result);
       if(index!=undefined)
