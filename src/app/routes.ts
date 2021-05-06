@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminProductAddComponent } from './admin-product-add/admin-product-add.component';
 import { AdminProductEditComponent } from './admin-product-edit/admin-product-edit.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AuthGuard } from './auth.service';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ContactComponent } from './contact/contact.component';
@@ -47,6 +48,12 @@ export const appRoutes: Routes = [
         component: DashboardInfoComponent,
         outlet: 'dashboard',
         canActivate: [AuthGuard],
+      },
+      {
+        path:'dashboard-admin-settings',
+        component:AdminSettingsComponent,
+        outlet:'dashboard',
+        canActivate:[AuthGuard]
       },
       {
         path: 'dashboard-contact',

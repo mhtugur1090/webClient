@@ -3,7 +3,7 @@ import { Image } from '../_models/Image';
 import { Product } from '../_models/product';
 import { AlertifyService } from '../_services/alertify.service';
 import { ProductService } from '../_services/product.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-admin-product-add',
   templateUrl: './admin-product-add.component.html',
@@ -17,7 +17,8 @@ export class AdminProductAddComponent implements OnInit {
 
   constructor(
     private _productService: ProductService,
-    private _alert: AlertifyService
+    private _alert: AlertifyService,
+    private _locationa: Location
   ) {
     this.product = new Product();
     this.product.image = new Image();
@@ -29,6 +30,7 @@ export class AdminProductAddComponent implements OnInit {
     this._productService.postProduct(this.product).subscribe(
       (result) => {
         this._alert.success('Yeni ürün başarıyla eklendi');
+        this._locationa.back();
       },
       (err) => {
         this._alert.error('Ürün ekleme başarısız!');
