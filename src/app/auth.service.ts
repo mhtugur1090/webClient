@@ -12,7 +12,7 @@ export class AuthService {
 
   baseUrl : string ="http://localhost:5000/auth/";
   _jwtHelper = new JwtHelperService();
-  _decodedToken:any={unique_name:""};
+  _decodedToken:any={unique_name:"",nameid:""};
   private _http:HttpClient;
 
 constructor(http: HttpClient,private router:Router) { this._http = http; }
