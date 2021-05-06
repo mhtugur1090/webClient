@@ -33,9 +33,18 @@ export class ProductService {
     );
   }
 
-  postProduct(_product:Product):Observable<Product>
-  {
-    return this.http.post<Product>(this.baseUrl+"add",_product,this.httpOptions);
+  postProduct(_product: Product): Observable<Product> {
+    return this.http.post<Product>(
+      this.baseUrl + 'add',
+      _product,
+      this.httpOptions
+    );
   }
 
+  deleteProduct(_product: Product): Observable<Product> {
+    return this.http.delete<Product>(
+      this.baseUrl + _product.id,
+      this.httpOptions
+    );
+  }
 }

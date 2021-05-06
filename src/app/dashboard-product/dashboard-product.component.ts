@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../_models/product';
+import { AlertifyService } from '../_services/alertify.service';
 import { ProductService } from '../_services/product.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { ProductService } from '../_services/product.service';
 })
 export class DashboardProductComponent implements OnInit {
   products?: Product[];
-  constructor(private _proService: ProductService) {}
+  constructor(
+    private _proService: ProductService,
+    private _alert: AlertifyService
+  ) {}
 
   willDeleteProduct?: Product;
 
@@ -24,7 +28,15 @@ export class DashboardProductComponent implements OnInit {
   }
 
   deleteProduct(delPro: Product) {
-    console.log("Silincecek ürün id si: "+delPro.id);
-//TODO: silme işlemi yapılacak
+    console.log('Silincecek ürün id si: ' + delPro.id);
+
+    this._proService.deleteProduct(delPro).subscribe((result) => {
+      var index = this.products?.indexOf(result);
+      if(index!=undefined)
+      {
+        this.products?.splice(index,1);
+      }
+      this._alert.warning('Ürün : ' + result.name + ' silindi');
+    });
   }
 }
