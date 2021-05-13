@@ -1,9 +1,9 @@
-<div class="panel-body col-md-5">
+<div *ngIf="!loading" class="panel-body col-md-5">
   <h3 class="text-center"><i class="fa fa-lock fa-4x"></i></h3>
   <h2 class="text-center">Şifre değiştir</h2>
   <p>Admin şifresini değiştirebilirsiniz</p>
 
-  <form #formPass="ngForm" (submit)="updatePassword(adminPass)">
+  <form #formPass="ngForm" (submit)="updatePassword(adminPass); formPass.reset();">
     <div class="form-group">
       <div class="input-group my-2">
         <label for="password">Eski şifreniz:</label>
@@ -54,6 +54,8 @@
       </button>
     </div>
 
-    <input type="hidden" class="hide" name="token" id="token" value="" />
+
   </form>
 </div>
+
+<app-loadingpage [loading]="loading"></app-loadingpage>
