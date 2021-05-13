@@ -33,7 +33,7 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -59,7 +59,7 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{useHash:true}),// bu parametre manuel olarak link girdiğimizde 404 hatası vermemesi için.
     /*JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
