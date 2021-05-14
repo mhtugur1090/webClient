@@ -20,7 +20,8 @@ export class ContactService {
     })
 }
 
-  private baseUrl: string = 'http://localhost:5000/contact/';
+  private rootUrl:string = "https://sahinkerestewebapi.me";
+  private baseUrl: string = this.rootUrl+'/contact/';
 
   constructor(private http: HttpClient) {}
 

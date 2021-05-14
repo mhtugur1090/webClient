@@ -13,7 +13,8 @@ export class ProductService {
     }),
   };
 
-  private baseUrl: string = 'http://localhost:5000/product/';
+  private rootUrl:string = "https://sahinkerestewebapi.me";
+  private baseUrl: string = this.rootUrl+'/product/';
   product?: Product[];
   constructor(private http: HttpClient) {}
 

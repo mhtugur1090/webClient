@@ -16,7 +16,8 @@ export class AdminService {
       })
   }
 
-  private baseUrl: string = 'http://localhost:5000/admin/repassword/';
+  private rootUrl:string="https://sahinkerestewebapi.me";
+  private baseUrl: string = this.rootUrl+'/admin/repassword/';
 
   constructor(private http: HttpClient) {}
 
