@@ -12,6 +12,7 @@ export class ContactComponent implements OnInit {
   constructor(private _contactService:ContactService) { }
 
   contact?:Contact;
+  loading:boolean=false;
   ngOnInit() {
     this.getContact();
 
@@ -19,10 +20,15 @@ export class ContactComponent implements OnInit {
 
   getContact()
   {
+    this.loading = true;
     this._contactService.getContact().subscribe(result=>
       {
         this.contact = result;
+        this.loading = false;
         console.log(">>>"+this.contact.email);
+      },err=>
+      {
+        this.loading = false;
       });
   }
 }

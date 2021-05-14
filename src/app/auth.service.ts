@@ -10,7 +10,8 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
 
-  baseUrl : string ="http://localhost:5000/auth/";
+  private rootUrl:string = "https://sahinkerestewebapi.me";
+  baseUrl : string =this.rootUrl+"/auth/";
   _jwtHelper = new JwtHelperService();
   _decodedToken:any={unique_name:"",nameid:""};
   private _http:HttpClient;

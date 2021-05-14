@@ -10,6 +10,7 @@ import { AboutService } from '../_services/about.service';
 export class AboutusComponent implements OnInit {
 
   about?:Aboutus;
+  loading:boolean=false;
   constructor(private _aboutService:AboutService) { }
 
   ngOnInit() {
@@ -19,9 +20,11 @@ export class AboutusComponent implements OnInit {
 
   getAbout()
   {
+    this.loading=true;
     this._aboutService.getAbout().subscribe(result=>
       {
         this.about = result;
+        this.loading=false;
       });
   }
 

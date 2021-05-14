@@ -9,28 +9,24 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./list-products.component.css'],
 })
 export class ListProductsComponent implements OnInit {
+  products?: Product[];
+  loading: boolean = false;
+  constructor(private _proService: ProductService) {}
 
-  products?:Product[];
-
-  constructor(private _proService:ProductService)
-  {
-
-
-  }
-
-  ngOnInit()
-  {
+  ngOnInit() {
     this.getProducts();
   }
 
-  getProducts()
-  {
-    this._proService.getProducts().subscribe(result=>
-      {
+  getProducts() {
+    this.loading = true;
+    this._proService.getProducts().subscribe(
+      (result) => {
         this.products = result;
-        console.log(this.products);
-      })
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+      }
+    );
   }
-
-
 }
