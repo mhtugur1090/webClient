@@ -12,8 +12,10 @@ export class AboutService {
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     }),
   };
-
-  private baseUrl: string = 'http://localhost:5000/about';
+  //https://sahinkerestewebapi.me
+  //http://localhost:5000/
+  private rootUrl:string = "https://sahinkerestewebapi.me";
+  private baseUrl: string = this.rootUrl+'/about';
   constructor(private http: HttpClient) {}
 
   getAbout(): Observable<Aboutus> {
