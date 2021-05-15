@@ -10,6 +10,8 @@ import { ProductService } from '../_services/product.service';
 })
 export class DashboardProductComponent implements OnInit {
   products?: Product[];
+  loading:boolean = false;
+
   constructor(
     private _proService: ProductService,
     private _alert: AlertifyService
@@ -22,13 +24,15 @@ export class DashboardProductComponent implements OnInit {
   }
 
   getProducts() {
+    this.loading = true;
     this._proService.getProducts().subscribe((products) => {
       this.products = products;
+      this.loading = false;
     });
   }
 
   deleteProduct(delPro: Product) {
-    console.log('Silincecek ürün id si: ' + delPro.id);
+    this.loading = true;
     //diziden de silmemiz gerekiyor ki sayfaya yansısın.
     this._proService.deleteProduct(delPro).subscribe((result) => {
       var index = this.products?.indexOf(result);
@@ -37,6 +41,7 @@ export class DashboardProductComponent implements OnInit {
         this.products?.splice(index,1);
       }
       this._alert.warning('Ürün : ' + result.name + ' silindi');
+      this.loading = false;
     });
   }
 }

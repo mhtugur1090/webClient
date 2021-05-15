@@ -14,6 +14,7 @@ export class AdminProductAddComponent implements OnInit {
   public respone: any = { dbPath: '' };
   public serverPath: string = 'http://localhost:5000/';
   stokChange: boolean = false;
+  loading:boolean = false;
 
   constructor(
     private _productService: ProductService,
@@ -27,13 +28,17 @@ export class AdminProductAddComponent implements OnInit {
   ngOnInit() {}
 
   submitForm() {
+    this.loading = true;
     this._productService.postProduct(this.product).subscribe(
       (result) => {
+        this.loading = false;
         this._alert.success('Yeni ürün başarıyla eklendi');
         this._locationa.back();
+
       },
       (err) => {
         this._alert.error('Ürün ekleme başarısız!');
+        this.loading = false;
       }
     );
   }

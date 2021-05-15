@@ -17,6 +17,7 @@ export class AdminPImageEditComponent implements OnInit {
   public onUploadFinished = new EventEmitter();
 
   public message?: string;
+  loading:boolean = false;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -25,6 +26,8 @@ export class AdminPImageEditComponent implements OnInit {
 
   UploadFile(files:any)
   {
+    this.loading = true;
+
     if (files.length === 0) {
       return;
     }
@@ -54,6 +57,7 @@ export class AdminPImageEditComponent implements OnInit {
           this.onUploadFinished.emit(event.body);// bu içersinde upload edilen dosyaya ait db path ini saklar. Bu da bize upload edilmiş dosyaya erişmek için ilgili pathi bize verir(seerver daki).
 
         }
+        this.loading = false;
       });
   }
 

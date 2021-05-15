@@ -11,6 +11,7 @@ import { AlertifyService } from '../_services/alertify.service';
 export class DashboardInfoComponent implements OnInit {
   about: Aboutus = { message: '' };
   aboutMessage?: string;
+  loading:boolean = false;
   constructor(
     private _aboutService: AboutService,
     private _alert: AlertifyService
@@ -21,9 +22,11 @@ export class DashboardInfoComponent implements OnInit {
   }
 
   getAbout() {
+    this.loading = true;
     this._aboutService.getAbout().subscribe((result) => {
       this.about = result;
       this.aboutMessage = result.message;
+      this.loading = false;
     });
   }
 
@@ -35,13 +38,17 @@ export class DashboardInfoComponent implements OnInit {
   }
 
   updateAbout() {
+    this.loading = true;
+
     this.about.message = this.aboutMessage;
     this._aboutService.putAbout(this.about).subscribe((result) => {
       if (result) {
+        this.loading = false;
         this._alert.success('Güncelleme başarılı');
       }
       else
       {
+        this.loading = false;
         this._alert.error('Güncelleme başarısız');
       }
     });

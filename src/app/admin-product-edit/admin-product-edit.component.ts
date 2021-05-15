@@ -17,8 +17,8 @@ export class AdminProductEditComponent implements OnInit {
 
   imChange?: string;
   imgChangeFlag: boolean = false;
-
-  stokChange:boolean=false;
+  loading: boolean = false;
+  stokChange: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -32,12 +32,15 @@ export class AdminProductEditComponent implements OnInit {
   }
 
   getProduct() {
+    this.loading = true;
     this.productService.getProduct(this.route.snapshot.params['id']).subscribe(
       (result) => {
         this.product = result;
         this.imChange = this.product.image?.path;
+        this.loading = false;
       },
       (err) => {
+        this.loading = false;
         console.log(err);
       }
     );
@@ -48,14 +51,17 @@ export class AdminProductEditComponent implements OnInit {
   }
 
   submitForm() {
+    this.loading = true;
     if (this.product)
       this.productService.putProduct(this.product).subscribe(
         (result) => {
+          this.loading = false;
           console.log('Güncelleme basarılı');
           //this.router.navigate(['dashboard']);
           this.location.back();
         },
         (err) => {
+          this.loading = false;
           console.log('Hata>>>' + err);
         }
       );
@@ -75,11 +81,9 @@ export class AdminProductEditComponent implements OnInit {
 
   onItemChange(value: boolean) {
     console.log(value);
-    if(this.product)
-    {
+    if (this.product) {
       this.product.active = value;
-      this.stokChange=true;
+      this.stokChange = true;
     }
-
   }
 }

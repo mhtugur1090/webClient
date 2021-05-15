@@ -11,6 +11,7 @@ import { ProductService } from '../_services/product.service';
 export class AdminDashboardComponent implements OnInit {
 
   products?:Product[];
+  loading:boolean=false;
   constructor(private _proService:ProductService) { }
 
   ngOnInit() {
@@ -19,9 +20,11 @@ export class AdminDashboardComponent implements OnInit {
 
   getProducts()
   {
+    this.loading = true;
     this._proService.getProducts().subscribe(products=>
       {
         this.products = products;
+        this.loading = false;
       });
 
   }
