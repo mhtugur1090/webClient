@@ -112,6 +112,7 @@ export class DashboardContactComponent implements OnInit {
   }
 
   orginalContactTemplate(result: Contact) {
+
     this.orginalContact.email = result.email;
     this.orginalContact.instagram = result.instagram;
     this.orginalContact.facebook = result.facebook;

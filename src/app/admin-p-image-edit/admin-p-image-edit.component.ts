@@ -18,6 +18,7 @@ export class AdminPImageEditComponent implements OnInit {
 
   public message?: string;
   loading:boolean = false;
+  private rootUrl:string = "https://sahinkerestewebapi.me";
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class AdminPImageEditComponent implements OnInit {
     formData.append('file', fileToUpload, fileToUpload.name);
 
     this.http
-      .post('http://localhost:5000/image', formData, {
+      .post(this.rootUrl+'/image', formData, {
         reportProgress: true,
         observe: 'events',
       })
@@ -47,7 +48,7 @@ export class AdminPImageEditComponent implements OnInit {
             var a = event.total;
             if(a==undefined)a=1;
 
-
+            this.loading = false;
 
         }
         else if(event.type === HttpEventType.Response)
@@ -55,9 +56,9 @@ export class AdminPImageEditComponent implements OnInit {
 
           this.message = "upload success";
           this.onUploadFinished.emit(event.body);// bu içersinde upload edilen dosyaya ait db path ini saklar. Bu da bize upload edilmiş dosyaya erişmek için ilgili pathi bize verir(seerver daki).
-
+          this.loading = false;
         }
-        this.loading = false;
+
       });
   }
 
