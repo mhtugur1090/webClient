@@ -9,7 +9,8 @@ import { Aboutus } from '../_models/about';
 export class AboutService {
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type':'application/json'
     }),
   };
   //https://sahinkerestewebapi.me

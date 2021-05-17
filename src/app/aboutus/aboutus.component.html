@@ -1,22 +1,19 @@
 <div class="banner-breadcum section mt-3">
   <div class="row">
-    <div
-      class="breadcrumb-image"
-      style="
-        background-image: url(http://localhost:5000/../../assets/images/about.jpg);
-      "
-    >
+    <div>
       <div class="container text-center">
         <h1>HAKKIMIZDA</h1>
-        <div>
-          <img src="../../assets/images/about.jpg" alt="">
-        </div>
-        <div class="breadcrumbs_path">
-          <p *ngIf="about" class="text-white">
-            <span *ngIf="about.message">
-              {{about.message}}
-            </span>
-          </p>
+        <div class="row">
+          <div class="col">
+            <img src="../../assets/images/about.jpg" alt="">
+          </div>
+          <div class="col">
+            <p *ngIf="about" class="text-black-50">
+              <span *ngIf="about.message">
+                {{about.message}}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
