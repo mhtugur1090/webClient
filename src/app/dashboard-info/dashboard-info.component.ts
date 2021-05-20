@@ -41,7 +41,9 @@ export class DashboardInfoComponent implements OnInit {
     this.loading = true;
 
     this.about.message = this.aboutMessage;
-    this._aboutService.putAbout(this.about).subscribe((result) => {
+
+
+    this._aboutService.UpdateAbout(this.about).subscribe((result) => {
       if (result) {
         this.loading = false;
         this._alert.success('Güncelleme başarılı');
@@ -52,5 +54,6 @@ export class DashboardInfoComponent implements OnInit {
         this._alert.error('Güncelleme başarısız');
       }
     });
+
   }
 }

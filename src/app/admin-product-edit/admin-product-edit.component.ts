@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AdminProductEditComponent implements OnInit {
   product?: Product;
   public respone: any = { dbPath: '' };
-  public serverPath: string = 'http://localhost:5000/';
+  public serverPath: string = 'https://sahinkerestewebapi.me/';
 
   imChange?: string;
   imgChangeFlag: boolean = false;
@@ -69,8 +69,14 @@ export class AdminProductEditComponent implements OnInit {
   uploadedImg(event: any) {
     this.respone = event;
     this.serverPath += this.respone.dbPath + '';
+
+    console.log("image path:"+this.serverPath);
+    console.log("prdocut:"+this.product);
+    console.log("image:"+this.product?.image);
+
     if (this.product && this.product.image) {
       this.product.image.path = this.serverPath;
+
       if (this.imChange === this.serverPath) {
         this.imgChangeFlag = false;
       } else {

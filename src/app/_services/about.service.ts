@@ -23,9 +23,13 @@ export class AboutService {
     return this.http.get<Aboutus>(this.baseUrl);
   }
 
-  putAbout(_about: Aboutus): Observable<Aboutus> {
-    return this.http.put<Aboutus>(this.baseUrl, _about, this.httpOptions);
+  //Deneme-----------------------------------
+
+  UpdateAbout(_about: Aboutus): Observable<Aboutus> {
+    return this.http.post<Aboutus>(this.baseUrl, _about, this.httpOptions);
   }
+
+  //-----------------------------------------
 
   getHeaderAuth() {}
 }

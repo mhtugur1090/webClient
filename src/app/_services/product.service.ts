@@ -34,15 +34,13 @@ export class ProductService {
     return this.http.post<Product>(this.baseUrl+"update",_product,this.httpOptions);
   }
 
-  //------------------------------------------------------
-
-  putProduct(_product: Product): Observable<Product> {
-    return this.http.put<Product>(
-      this.baseUrl + _product.id,
-      _product,
+  deleteProduct(_product: Product): Observable<Product> {
+    return this.http.post<Product>(
+      this.baseUrl + "delete",_product,
       this.httpOptions
     );
   }
+  //------------------------------------------------------
 
   postProduct(_product: Product): Observable<Product> {
     return this.http.post<Product>(
@@ -52,10 +50,5 @@ export class ProductService {
     );
   }
 
-  deleteProduct(_product: Product): Observable<Product> {
-    return this.http.delete<Product>(
-      this.baseUrl + _product.id,
-      this.httpOptions
-    );
-  }
+
 }
