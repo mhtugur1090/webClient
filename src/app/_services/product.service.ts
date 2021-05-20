@@ -26,6 +26,16 @@ export class ProductService {
     return this.http.get<Product>(this.baseUrl + id);
   }
 
+
+  // Deneme------------------------------------------------
+
+  UpdateProduct(_product:Product):Observable<Product>
+  {
+    return this.http.post<Product>(this.baseUrl+"update",_product,this.httpOptions);
+  }
+
+  //------------------------------------------------------
+
   putProduct(_product: Product): Observable<Product> {
     return this.http.put<Product>(
       this.baseUrl + _product.id,

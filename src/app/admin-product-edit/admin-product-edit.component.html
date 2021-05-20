@@ -112,7 +112,7 @@
           </div>
         </div>
         <button
-          [disabled]="!form.dirty && !imgChangeFlag && !stokChange || (name.invalid || name.pristine)"
+          [disabled]="!form.dirty && !imgChangeFlag && !stokChange && (name.invalid || name.pristine)"
           type="submit"
           class="btn btn-warning"
         >

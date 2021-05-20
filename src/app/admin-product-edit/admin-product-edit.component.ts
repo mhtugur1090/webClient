@@ -53,7 +53,7 @@ export class AdminProductEditComponent implements OnInit {
   submitForm() {
     this.loading = true;
     if (this.product)
-      this.productService.putProduct(this.product).subscribe(
+      this.productService.UpdateProduct(this.product).subscribe(
         (result) => {
           this.loading = false;
           console.log('Güncelleme basarılı');
@@ -84,6 +84,7 @@ export class AdminProductEditComponent implements OnInit {
     if (this.product) {
       this.product.active = value;
       this.stokChange = true;
+      console.log("stok değişikliği:"+this.stokChange);
     }
   }
 }

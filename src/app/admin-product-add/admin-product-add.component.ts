@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class AdminProductAddComponent implements OnInit {
   product: Product;
   public respone: any = { dbPath: '' };
-  public serverPath: string = 'http://localhost:5000/';
+  public serverPath: string = 'https://sahinkerestewebapi.me/';
   stokChange: boolean = false;
   loading:boolean = false;
 
