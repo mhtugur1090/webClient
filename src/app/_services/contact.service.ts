@@ -28,8 +28,13 @@ export class ContactService {
   getContact(): Observable<Contact> {
     return this.http.get<Contact>(this.baseUrl);
   }
-  putProduct(_contact: Contact): Observable<Contact> {
-    return this.http.put<Contact>(this.baseUrl + _contact.id, _contact,this.httpOptions);
+
+  // Deneme --------------------------------------------------------------
+  UpdateProduct(_contact: Contact): Observable<Contact> {
+    return this.http.post<Contact>(this.baseUrl, _contact,this.httpOptions);
   }
+
+  //---------------------------------------------------------------------
+
 
 }

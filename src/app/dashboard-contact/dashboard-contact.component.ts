@@ -41,7 +41,7 @@ export class DashboardContactComponent implements OnInit {
 
     this.saveProccess = true;
     if (this.contact != undefined) {
-      this._contactService.putProduct(this.contact).subscribe(
+      this._contactService.UpdateProduct(this.contact).subscribe(
         (result) => {
           this._alert.success('İletişim bilgileri güncellendi');
           this.isAddphoneOrAddress = false;

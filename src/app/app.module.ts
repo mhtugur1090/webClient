@@ -27,13 +27,14 @@ import { DashboardContactComponent } from './dashboard-contact/dashboard-contact
 import { LoadingpageComponent } from './loadingpage/loadingpage.component';
 import { AdminProductAddComponent } from './admin-product-add/admin-product-add.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { FooterComponent } from './footer/footer.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       NavbarComponent,
       AdminLoginComponent,
@@ -52,7 +53,8 @@ export function tokenGetter() {
       DashboardContactComponent,
       LoadingpageComponent,
       AdminProductAddComponent,
-      AdminSettingsComponent
+      AdminSettingsComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule,
